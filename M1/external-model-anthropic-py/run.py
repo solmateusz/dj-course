@@ -11,8 +11,8 @@ if not os.getenv('ANTHROPIC_API_KEY'):
 
 
 client = AsyncClient(api_key=os.getenv('ANTHROPIC_API_KEY'))
-MODEL = 'claude-3-5-haiku-latest'
-# MODEL = 'claude-haiku-4-5'
+# MODEL = 'claude-4-5-haiku-latest'
+MODEL = 'claude-haiku-4-5'
 # MODEL = 'claude-opus-4-1'
 # MODEL = 'claude-sonnet-4-5'
 
@@ -28,6 +28,8 @@ async def main():
     PROMPT = 'Write a super short software joke in Polish.'
     response = await send_message(PROMPT)
     print(response.content[0].text)
+    print("Input tokens:", response.usage.input_tokens)
+    print("Output tokens:", response.usage.output_tokens)
 
 if __name__ == '__main__':
     asyncio.run(main())
